@@ -1,0 +1,31 @@
+{
+  "name": "dev-handbook",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johncodes404/dev-handbook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johncodes404/dev-handbook/issues"
+  },
+  "homepage": "https://github.com/johncodes404/dev-handbook#readme",
+  "description": "",
+  "devDependencies": {
+    "vitepress": "1.6.4",
+    "vue": "3.5.28"
+  },
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "type": "module"
+}
