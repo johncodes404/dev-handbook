@@ -1,11 +1,13 @@
-# dev-handbook 运行与交接手册
+# LogicLoom (原 dev-handbook)
 
+> **核心理念**：只专注写作，其余自动化完成。
+> 
 > 更新时间：2026-02-14  
-> 目标：让没有接触过本项目的人，按文档即可独立完成本地运行、写作、自动发布和基础排障。
+> 目标：极简主义个人博客，基于 VitePress，实现“零配置”文章管理。
 
 ## 1. 项目定位
 
-`dev-handbook` 是一个基于 VitePress 的个人技术教程与思考站点。
+`dev-handbook` 是一个基于 VitePress 的自动化个人博客系统。
 
 - 内容源：`docs/` 下的 Markdown 文件
 - 本地预览：`npm run docs:dev`
@@ -36,16 +38,14 @@ dev-handbook/
 │     └─ deploy.yml                 # 自动构建+发布工作流
 ├─ docs/
 │  ├─ .vitepress/
-│  │  └─ config.ts                  # VitePress 站点配置（含 base/nav/sidebar）
-│  ├─ index.md                      # 首页
-│  ├─ tech-tutorials/
-│  │  └─ index.md                   # 技术教程分类页
-│  ├─ thinking/
-│  │  └─ index.md                   # 思考分类页
+│  │  └─ config.ts                  # 站点配置（含基础信息/导航栏）
+│  ├─ tech-tutorials/               # 技术教程文章目录
+│  ├─ thinking/                     # 思考随笔文章目录
+│  ├─ index.md                      # 首页（自动加载文章列表）
+│  ├─ posts.data.ts                 # [核心] 自动化脚本：扫描并提取文章信息
 │  └─ public/                       # 静态资源（图片等）
-├─ REQUIREMENTS.md                  # 项目需求文档（PRD）
+├─ REQUIREMENTS.md                  # 项目需求文档
 ├─ package.json
-├─ package-lock.json
 └─ README.md                        # 本文档
 ```
 
