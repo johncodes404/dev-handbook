@@ -4,3 +4,4 @@ Thumbs.db
 
 # VitePress local output
 docs/.vitepress/dist/
+docs/.vitepress/cache/
