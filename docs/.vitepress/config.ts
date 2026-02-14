@@ -7,6 +7,29 @@ type SidebarLinkItem = {
   link: string
 }
 
+function tokenizeForLocalSearch(input: string): string[] {
+  const hanRunRe = /[\p{Script=Han}]{2,}/gu
+  const latinWordRe = /[A-Za-z0-9]+/g
+  const text = input.normalize('NFKC')
+  const tokens = new Set<string>()
+
+  for (const token of text.match(latinWordRe) ?? []) {
+    tokens.add(token.toLowerCase())
+  }
+
+  // Add Chinese n-grams so common keyword searches match contiguous phrases.
+  for (const run of text.match(hanRunRe) ?? []) {
+    const maxLen = Math.min(run.length, 8)
+    for (let len = 2; len <= maxLen; len += 1) {
+      for (let i = 0; i + len <= run.length; i += 1) {
+        tokens.add(run.slice(i, i + len))
+      }
+    }
+  }
+
+  return [...tokens]
+}
+
 function getMarkdownTitle(filePath: string, fallback: string): string {
   try {
     const content = readFileSync(filePath, 'utf8')
@@ -72,6 +95,16 @@ export default defineConfig({
   title: "Jayden's LogicLoom",
   description: '深度思考，终身学习',
   themeConfig: {
+    search: {
+      provider: 'local',
+      options: {
+        miniSearch: {
+          options: {
+            tokenize: tokenizeForLocalSearch
+          }
+        }
+      }
+    },
     nav: [
       { text: '技术教程', link: '/tech-tutorials/' },
       { text: '思考', link: '/thinking/' }
